@@ -1,24 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#080b0a">
+    <meta name="theme-color" content="#0b0808">
 
     <title>DeathCipher | Web Hub</title>
 
     <meta name="description"
-          content="DeathCipher's official website hub. Explore projects, websites and creations.">
+          content="Explore all websites and projects created by DeathCipher.">
 
     <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="assets/js/main.js" defer></script>
 </head>
 
 <body>
 
     <header class="header">
-        <div class="logo">DEATHCIPHER_</div>
+        <a href="#" class="logo">DEATHCIPHER</a>
 
         <nav>
             <a href="#websites">WEBSITES</a>
@@ -28,9 +29,7 @@
     </header>
 
     <section class="hero">
-        <div class="terminal">
-            root@deathcipher:~$ ./explore_websites.sh
-        </div>
+        <div class="eyebrow">PERSONAL WEB DIRECTORY</div>
 
         <h1>DEATH<span>CIPHER</span></h1>
 
@@ -39,44 +38,56 @@
         </p>
 
         <div class="status">
-            [ SYSTEM ONLINE ] — WELCOME TO MY WEB HUB
+            <span class="status-dot"></span>
+            ALL SYSTEMS OPERATIONAL
         </div>
     </section>
 
     <main class="container" id="websites">
 
-        <div class="section-title">
-            // MY WEBSITES & PROJECTS
+        <div class="section-header">
+            <div>
+                <div class="section-label">DISCOVER</div>
+                <h2>My Websites</h2>
+            </div>
+
+            <div class="site-count" id="site-count">
+                0 PROJECTS
+            </div>
         </div>
 
         <div class="toolbar">
             <input
                 id="search"
                 type="search"
-                placeholder="Search websites and projects..."
+                placeholder="Search websites..."
                 autocomplete="off"
+                aria-label="Search websites"
             >
         </div>
 
         <div class="grid" id="projects"></div>
 
-        <div id="message">
-            Connecting to GitHub...
+        <div id="message" role="status">
+            Loading websites...
         </div>
 
     </main>
 
     <footer>
-        <p>DEATHCIPHER © <span id="year"></span></p>
-        <p>Built with <span class="heart">♥</span> and code.</p>
+        <div class="footer-logo">DEATHCIPHER</div>
+
+        <p>Personal projects and websites.</p>
 
         <a href="https://github.com/DeathCipher"
            target="_blank" rel="noopener noreferrer">
-            github.com/DeathCipher
+            GITHUB PROFILE
         </a>
-    </footer>
 
-    <script src="assets/js/main.js" defer></script>
+        <p class="copyright">
+            © <span id="year"></span> DeathCipher. All rights reserved.
+        </p>
+    </footer>
 
 </body>
 </html>
