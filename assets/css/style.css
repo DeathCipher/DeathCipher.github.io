@@ -109,10 +109,10 @@ h1 span {
     display: inline-block;
     width: 8px;
     height: 8px;
-    background-color: #ff3030;
+    background: #ff3030;
     border-radius: 50%;
     margin-right: 9px;
-    box-shadow: 0 0 8px #ff3030, 0 0 15px rgba(255, 48, 48, 0.5);
+    box-shadow: 0 0 10px #ff3030;
     vertical-align: middle;
 }
 
