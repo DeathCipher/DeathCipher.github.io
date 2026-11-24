@@ -4,8 +4,7 @@
 // CONFIGURATION
 
 const CONFIG = {
-    username: "DeathCipher",
-    perPage: 100
+    database: "assets/data/sites.json"
 };
 
 // DOM ELEMENTS
@@ -13,122 +12,132 @@ const CONFIG = {
 const projects = document.getElementById("projects");
 const message = document.getElementById("message");
 const search = document.getElementById("search");
+const siteCount = document.getElementById("site-count");
 const year = document.getElementById("year");
 
-let repositories = [];
+let websites = [];
 
 // INITIALIZATION
 
 year.textContent = new Date().getFullYear();
 
-search.addEventListener("input", renderProjects);
+search.addEventListener("input", renderWebsites);
 
-loadRepositories();
+loadWebsites();
 
-// LOAD GITHUB REPOSITORIES
+// LOAD JSON DATABASE
 
-async function loadRepositories() {
-    message.textContent = "Connecting to GitHub...";
+async function loadWebsites() {
+    message.textContent = "Loading websites...";
 
     try {
-        const response = await fetch(
-            `https://api.github.com/users/${CONFIG.username}/repos?per_page=${CONFIG.perPage}&sort=updated`
-        );
+        const response = await fetch(CONFIG.database);
 
         if (!response.ok) {
-            throw new Error(`GitHub API error: ${response.status}`);
+            throw new Error(`Database error: ${response.status}`);
         }
 
         const data = await response.json();
 
-        repositories = data
-            .filter(repo => !repo.fork && !repo.archived)
-            .sort((a, b) => {
-                if (a.homepage && !b.homepage) return -1;
-                if (!a.homepage && b.homepage) return 1;
+        if (!Array.isArray(data)) {
+            throw new Error("Invalid database format.");
+        }
 
-                return b.stargazers_count - a.stargazers_count;
-            });
+        websites = data.filter(site =>
+            site.name &&
+            site.url &&
+            isValidUrl(site.url)
+        );
 
-        renderProjects();
+        renderWebsites();
 
     } catch (error) {
         console.error(error);
 
+        siteCount.textContent = "ERROR";
+
         message.textContent =
-            "Unable to load projects. Please try again later.";
+            "Unable to load websites. Check assets/data/sites.json.";
     }
 }
 
-// CREATE PROJECT CARD
+// VALIDATE WEBSITE URL
 
-function createProjectCard(repo) {
-    const card = document.createElement("article");
+function isValidUrl(value) {
+    try {
+        const url = new URL(value);
+
+        return (
+            url.protocol === "https:" ||
+            url.protocol === "http:"
+        );
+    } catch {
+        return false;
+    }
+}
+
+// CREATE WEBSITE CARD
+
+function createWebsiteCard(site) {
+    const card = document.createElement("a");
+
     card.className = "card";
+    card.href = site.url;
+    card.target = "_blank";
+    card.rel = "noopener noreferrer";
+    card.setAttribute(
+        "aria-label",
+        `Visit ${site.name} (opens in a new tab)`
+    );
+
+    const top = document.createElement("div");
+    top.className = "card-top";
+
+    const category = document.createElement("span");
+    category.className = "card-category";
+    category.textContent = site.category || "Website";
+
+    const arrow = document.createElement("span");
+    arrow.className = "card-arrow";
+    arrow.textContent = "↗";
+
+    top.append(category, arrow);
 
     const title = document.createElement("h3");
-    title.textContent = repo.name;
+    title.textContent = site.name;
 
     const description = document.createElement("p");
     description.textContent =
-        repo.description || "No description available.";
+        site.description || "Visit this website.";
 
-    const tag = document.createElement("div");
-    tag.className = "tag";
-
-    tag.textContent =
-        `${repo.language || "PROJECT"} · ★ ${repo.stargazers_count}`;
-
-    const links = document.createElement("div");
-    links.className = "links";
-
-    if (repo.homepage) {
-        links.appendChild(
-            createLink(repo.homepage, "VISIT WEBSITE →")
-        );
-    }
-
-    links.appendChild(
-        createLink(repo.html_url, "SOURCE CODE →")
-    );
-
-    card.append(title, description, tag, links);
+    card.append(top, title, description);
 
     return card;
 }
 
-// CREATE SAFE EXTERNAL LINK
+// RENDER WEBSITE DATABASE
 
-function createLink(url, label) {
-    const link = document.createElement("a");
-
-    link.href = url;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = label;
-
-    return link;
-}
-
-// RENDER PROJECTS
-
-function renderProjects() {
+function renderWebsites() {
     projects.replaceChildren();
 
     const query = search.value.toLowerCase().trim();
 
-    const filtered = repositories.filter(repo => {
+    const filtered = websites.filter(site => {
         return (
-            repo.name.toLowerCase().includes(query) ||
-            (repo.description || "").toLowerCase().includes(query)
+            site.name.toLowerCase().includes(query) ||
+            (site.description || "").toLowerCase().includes(query) ||
+            (site.category || "").toLowerCase().includes(query)
         );
     });
 
-    filtered.forEach(repo => {
-        projects.appendChild(createProjectCard(repo));
+    filtered.forEach(site => {
+        projects.appendChild(createWebsiteCard(site));
     });
 
+    siteCount.textContent =
+        `${websites.length} PROJECT${websites.length === 1 ? "" : "S"}`;
+
     message.textContent = filtered.length
-        ? `${filtered.length} PROJECT(S) FOUND`
-        : "No projects found.";
+        ? `${filtered.length} WEBSITE${filtered.length === 1 ? "" : "S"} FOUND`
+        : "No websites found.";
 }
