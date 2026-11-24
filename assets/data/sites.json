@@ -3,7 +3,7 @@
     {
         "name": "ETS2 SII Decryptor",
         "description": "A tool for decrypting Euro Truck Simulator 2 SII save files.",
-        "url": "https://github.com/DeathCipher/ETS2-SII-Decryptor",
+        "url": "https://deathcipher.github.io/ETS2-SII-Decryptor",
         "category": "Tools"
     }
 ]
