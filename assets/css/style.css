@@ -1,11 +1,15 @@
 
 :root {
-    --bg: #080b0a;
-    --panel: #101713;
-    --green: #00ff88;
-    --muted: #84948b;
-    --border: #1c3026;
-    --text: #e5f5eb;
+    --bg: #0b0808;
+    --panel: #151010;
+    --panel-hover: #1d1212;
+
+    --red: #ff3030;
+    --red-dark: #b91c1c;
+
+    --text: #f5eeee;
+    --muted: #968888;
+    --border: #352020;
 }
 
 * {
@@ -21,13 +25,13 @@ body {
     min-height: 100vh;
     background: var(--bg);
     color: var(--text);
-    font-family: Consolas, Monaco, monospace;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* HEADER */
 
 .header {
-    padding: 25px 8%;
+    padding: 24px 8%;
     border-bottom: 1px solid var(--border);
 
     display: flex;
@@ -35,79 +39,110 @@ body {
     align-items: center;
 }
 
-.logo {
-    color: var(--green);
+.logo,
+.footer-logo {
+    color: var(--red);
     font-size: 19px;
-    font-weight: bold;
+    font-weight: 800;
     letter-spacing: 2px;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
 }
 
 nav a {
     color: var(--muted);
     text-decoration: none;
-    margin-left: 20px;
     font-size: 13px;
+    font-weight: 600;
     transition: color .2s;
 }
 
 nav a:hover {
-    color: var(--green);
+    color: var(--red);
 }
 
 /* HERO */
 
 .hero {
     text-align: center;
-    padding: 95px 20px 65px;
+    padding: 100px 20px 75px;
 }
 
-.terminal {
-    color: var(--green);
-    font-size: 13px;
-    margin-bottom: 25px;
+.eyebrow,
+.section-label {
+    color: var(--red);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
 }
 
 h1 {
-    font-size: clamp(38px, 8vw, 72px);
-    margin: 0;
-    letter-spacing: 4px;
+    font-size: clamp(42px, 8vw, 76px);
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin: 22px 0;
 }
 
 h1 span {
-    color: var(--green);
+    color: var(--red);
 }
 
 .subtitle {
     color: var(--muted);
-    margin-top: 20px;
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 1.6;
 }
 
 .status {
-    color: var(--green);
-    font-size: 12px;
-    margin-top: 28px;
+    margin-top: 30px;
+    color: #e9aaaa;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
-/* MAIN CONTENT */
+.status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    margin-right: 7px;
+}
+
+/* MAIN */
 
 .container {
     max-width: 1100px;
     margin: auto;
-    padding: 20px 25px 80px;
+    padding: 25px 25px 90px;
 }
 
-.section-title {
-    color: var(--green);
-    font-size: 16px;
-    margin-bottom: 25px;
+.section-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.section-header h2 {
+    font-size: 28px;
+    margin: 10px 0 0;
+}
+
+.site-count {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
 }
 
 /* SEARCH */
 
 .toolbar {
-    display: flex;
-    gap: 12px;
     margin-bottom: 25px;
 }
 
@@ -115,42 +150,90 @@ input {
     width: 100%;
     background: var(--panel);
     border: 1px solid var(--border);
-    color: white;
-    padding: 14px;
+    border-radius: 6px;
+    color: var(--text);
+    padding: 16px;
     font-family: inherit;
+    font-size: 14px;
     outline: none;
+    transition: border-color .2s;
 }
 
 input:focus {
-    border-color: var(--green);
+    border-color: var(--red);
 }
 
-/* PROJECT CARDS */
+input::placeholder {
+    color: var(--muted);
+}
+
+/* WEBSITE CARDS */
 
 .grid {
     display: grid;
     grid-template-columns: repeat(
         auto-fit,
-        minmax(260px, 1fr)
+        minmax(250px, 1fr)
     );
     gap: 18px;
 }
 
 .card {
+    display: block;
     background: var(--panel);
     border: 1px solid var(--border);
-    padding: 24px;
-    transition: .2s;
+    border-radius: 8px;
+    padding: 25px;
+    min-height: 190px;
+
+    text-decoration: none;
+    color: inherit;
+
+    transition:
+        transform .2s,
+        border-color .2s,
+        background .2s;
 }
 
 .card:hover {
-    border-color: var(--green);
-    transform: translateY(-4px);
+    background: var(--panel-hover);
+    border-color: var(--red);
+    transform: translateY(-5px);
+}
+
+.card:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 4px;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.card-category {
+    color: var(--red);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.card-arrow {
+    color: var(--red);
+    font-size: 20px;
+    transition: transform .2s;
+}
+
+.card:hover .card-arrow {
+    transform: translate(3px, -3px);
 }
 
 .card h3 {
-    color: var(--green);
-    margin-top: 0;
+    font-size: 19px;
+    margin: 0 0 12px;
     overflow-wrap: anywhere;
 }
 
@@ -158,37 +241,15 @@ input:focus {
     color: var(--muted);
     font-size: 13px;
     line-height: 1.7;
-    min-height: 40px;
+    margin: 0;
 }
 
-.tag {
-    color: #9cefc2;
-    font-size: 11px;
-    margin-bottom: 20px;
-}
-
-.links {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-
-.links a {
-    color: var(--green);
-    font-size: 12px;
-    text-decoration: none;
-}
-
-.links a:hover {
-    text-decoration: underline;
-}
-
-/* STATUS MESSAGE */
+/* MESSAGE */
 
 #message {
     color: var(--muted);
     text-align: center;
-    padding: 35px;
+    padding: 35px 10px;
     font-size: 13px;
 }
 
@@ -196,19 +257,31 @@ input:focus {
 
 footer {
     text-align: center;
-    padding: 30px;
+    padding: 40px 20px;
     border-top: 1px solid var(--border);
     color: var(--muted);
     font-size: 12px;
 }
 
-footer a {
-    color: var(--green);
-    text-decoration: none;
+footer p {
+    line-height: 1.7;
 }
 
-.heart {
-    color: var(--green);
+footer a {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+footer a:hover {
+    color: white;
+}
+
+.copyright {
+    margin-top: 25px;
+    font-size: 11px;
 }
 
 /* MOBILE */
@@ -218,13 +291,24 @@ footer a {
         padding: 20px;
     }
 
+    nav {
+        gap: 13px;
+    }
+
     nav a {
-        margin-left: 10px;
         font-size: 11px;
     }
 
     .hero {
-        padding-top: 70px;
+        padding: 75px 20px 55px;
+    }
+
+    .container {
+        padding: 20px 18px 65px;
+    }
+
+    .section-header h2 {
+        font-size: 23px;
     }
 
     .grid {
