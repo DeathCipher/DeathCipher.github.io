@@ -97,21 +97,12 @@ h1 span {
     line-height: 1.6;
 }
 
-.status {
+.hero-label {
     margin-top: 30px;
-    color: #e9aaaa;
-    font-size: 11px;
+    color: var(--red);
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.status-dot {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    background: var(--red);
-    border-radius: 50%;
-    margin-right: 7px;
+    letter-spacing: 2px;
 }
 
 /* MAIN */
