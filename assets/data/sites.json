@@ -4,10 +4,8 @@
         "description": "A tool for decrypting Euro Truck Simulator 2 SII save files.",
         "url": "https://deathcipher.github.io/ETS2-SII-Decryptor/",
         "category": "Tools"
-    }
-]
-
-[
+    },
+    
     {
         "name": "File Manager",
         "description": "A tool for managing your files.",
