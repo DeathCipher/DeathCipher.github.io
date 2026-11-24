@@ -109,15 +109,14 @@ h1 span {
     letter-spacing: 2px;
 }
 
-.hero-label::before {
-    content: "";
-    display: block;
-    width: 9px;
-    height: 9px;
-    min-width: 9px;
-    background: #ff3030;
+.red-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    flex: 0 0 10px;
+    background-color: #ff0000;
     border-radius: 50%;
-    box-shadow: 0 0 8px #ff3030, 0 0 16px #ff3030;
+    box-shadow: 0 0 5px #ff0000, 0 0 15px #ff3030;
 }
 
 /* MAIN */
