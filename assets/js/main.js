@@ -44,8 +44,10 @@ async function loadWebsites() {
         }
 
         websites = data.filter(site =>
-            site.name &&
-            site.url &&
+            site &&
+            typeof site.name === "string" &&
+            site.name.trim() !== "" &&
+            typeof site.url === "string" &&
             isValidUrl(site.url)
         );
 
