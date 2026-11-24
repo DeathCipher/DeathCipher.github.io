@@ -6,3 +6,12 @@
         "category": "Tools"
     }
 ]
+
+[
+    {
+        "name": "File Manager",
+        "description": "A tool for managing your files.",
+        "url": "https://deathcipher.github.io/File-Manager/",
+        "category": "Tools"
+    }
+]
