@@ -1,2 +1,2 @@
-# deathcipher.github.io
+# DeathCipher.github.io
 Main page with links to all my websites
