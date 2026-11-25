@@ -5,11 +5,18 @@
         "url": "https://deathcipher.github.io/ETS2-SII-Decryptor/",
         "category": "Tools"
     },
-    
+
     {
         "name": "File Manager",
         "description": "A tool for managing your files.",
         "url": "https://deathcipher.github.io/File-Manager/",
+        "category": "Tools"
+    },
+
+    {
+        "name": "MSI Maker",
+        "description": "A tool for turning a Python script into a Windows .msi installer.",
+        "url": "https://deathcipher.github.io/MSI-maker-download/",
         "category": "Tools"
     }
 ]
