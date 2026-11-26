@@ -18,5 +18,12 @@
         "description": "A tool for turning a Python script into a Windows .msi installer.",
         "url": "https://deathcipher.github.io/MSI-maker-download/",
         "category": "Tools"
+    },
+
+    {
+        "name": "UPS Monitor",
+        "description": "A tool for monitoring your UPS's statistics.",
+        "url": "https://deathcipher.github.io/UPS-Monitor/",
+        "category": "Tools"
     }
 ]
