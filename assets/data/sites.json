@@ -1,4 +1,5 @@
 [
+
     {
         "name": "ETS2 SII Decryptor",
         "description": "A tool for decrypting Euro Truck Simulator 2 SII save files.",
@@ -25,5 +26,13 @@
         "description": "A tool for monitoring your UPS's statistics.",
         "url": "https://deathcipher.github.io/UPS-Monitor/",
         "category": "Tools"
+    },
+
+        {
+        "name": "Localvault",
+        "description": "A local password manager",
+        "url": "https://deathcipher.github.io/Local-Vault/",
+        "category": "Tools"
     }
+
 ]
